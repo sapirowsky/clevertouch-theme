@@ -1,5 +1,5 @@
 <?php get_header() ?>
 
-404
+<?php woocommerce_content() ?>
 
 <?php get_footer() ?>
