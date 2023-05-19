@@ -1,27 +1,35 @@
 <?php
 
-// Add css
-function load_stylesheets(){
+function setup(){
+    // Style with theme info
     wp_register_style('stylesheet', get_template_directory_uri() . '/style.css', '', 1, 'all');
     wp_enqueue_style( 'stylesheet');
+
+    // TailwindCSS
     wp_register_style('tailwind', get_template_directory_uri() . '/assets/css/tailwind.css', '', 1, 'all');
     wp_enqueue_style( 'tailwind');
-}
-add_action( 'wp_enqueue_scripts', 'load_stylesheets');
 
-// Add js 
-function load_javascript(){
+    // Custom js
     wp_register_script('custom', get_template_directory_uri() . '/assets/js/app.js', '', 1, true);
     wp_enqueue_script('custom');
 }
-add_action( 'wp_enqueue_scripts', 'load_javascript');
+add_action( 'wp_enqueue_scripts', 'setup');
 
-// Add menus
+
+// Theme support
+add_theme_support( 'title-tag' );
+add_theme_support( 'custom-logo' );
 add_theme_support( 'menus' );
 
-// Register menus
+// Filter jpg => webp
+function map_jpeg_to_webp( $formats ) {
+	$formats[ 'image/jpeg' ] = 'image/webp';
+	return $formats;
+};
+add_filter( 'image_editor_output_format', 'map_jpeg_to_webp' );
 
-register_nav_menu( 'header-menu', __( 'Header Menu', 'CleverTouch Shop Theme' ) );
+// Register menus
+register_nav_menu( 'header-menu', __( 'Menu nagłówka', 'clevertouch-shop-theme' ) );
 
 
 // Woocommerce support
