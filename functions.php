@@ -4,6 +4,8 @@
 function load_stylesheets(){
     wp_register_style('stylesheet', get_template_directory_uri() . '/style.css', '', 1, 'all');
     wp_enqueue_style( 'stylesheet');
+    wp_register_style('tailwind', get_template_directory_uri() . '/assets/css/tailwind.css', '', 1, 'all');
+    wp_enqueue_style( 'tailwind');
 }
 add_action( 'wp_enqueue_scripts', 'load_stylesheets');
 
