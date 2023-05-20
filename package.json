@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/sapirowsky/clevertouch-theme#readme",
   "devDependencies": {
+    "prettier": "2.8.8",
     "tailwindcss": "^3.3.2"
   }
 }

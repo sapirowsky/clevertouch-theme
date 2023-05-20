@@ -21,6 +21,8 @@ add_theme_support( 'title-tag' );
 add_theme_support( 'custom-logo' );
 add_theme_support( 'menus' );
 
+
+
 // Filter jpg => webp
 function map_jpeg_to_webp( $formats ) {
 	$formats[ 'image/jpeg' ] = 'image/webp';

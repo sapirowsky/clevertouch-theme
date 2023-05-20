@@ -1,3 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply overflow-x-hidden;
+}
+.container {
+  @apply transition-all duration-150;
+}
+/* Header Navigation */
+.hamburger-menu {
+  background-image: url("../img/icon-hamburger.svg");
+  @apply absolute z-20 right-[1.5rem] w-8 aspect-square sm:hidden bg-no-repeat bg-center transition-all duration-300 ease-out;
+}
+.hamburger-menu[aria-expanded="true"] {
+  background-image: url("../img/icon-close.svg");
+  @apply bg-no-repeat bg-center;
+}
+.nav-menu {
+  @apply fixed flex flex-col z-10 gap-8 pt-32 px-8 items-end text-xl translate-x-full transition-all duration-300 ease-out;
+  background: hsla(0, 0%, 50%, 0.4);
+  inset: 0px 0px 0px 20%;
+  @apply sm:bg-transparent sm:relative sm:pt-0 sm:px-0 sm:inset-0 sm:flex-row sm:flex-wrap sm:gap-4 sm:translate-x-0 sm:text-base md:text-xl;
+}
+.nav-menu[data-visible="true"] {
+  @apply translate-x-0;
+}
+.nav-menu a {
+  @apply flex justify-end sm:justify-start;
+}
+.sub-menu {
+  @apply hidden relative sm:absolute border-r-2 border-black pr-2 sm:border-none sm:pr-0;
+}
+.nav-menu li:hover > .sub-menu {
+  display: block;
+}
+@supports (backdrop-filter: blur(4px)) {
+  .nav-menu {
+    @apply backdrop-blur-sm sm:backdrop-blur-none;
+  }
+}
