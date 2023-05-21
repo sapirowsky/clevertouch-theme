@@ -576,6 +576,10 @@ video {
   visibility: collapse;
 }
 
+.static {
+  position: static;
+}
+
 .fixed {
   position: fixed;
 }
@@ -692,12 +696,20 @@ video {
   width: 0.25rem;
 }
 
+.w-14 {
+  width: 3.5rem;
+}
+
 .w-4 {
   width: 1rem;
 }
 
 .w-44 {
   width: 11rem;
+}
+
+.w-48 {
+  width: 12rem;
 }
 
 .w-52 {
@@ -718,14 +730,6 @@ video {
 
 .w-full {
   width: 100%;
-}
-
-.w-14 {
-  width: 3.5rem;
-}
-
-.w-48 {
-  width: 12rem;
 }
 
 .max-w-\[130px\] {
@@ -943,6 +947,8 @@ video {
   transition-duration: 700ms;
 }
 
+/* General settings */
+
 body {
   overflow-x: hidden;
 }
@@ -1065,7 +1071,7 @@ a:hover {
 
 @media (min-width: 640px) {
   .nav-menu {
-    position: relative;
+    position: static;
     inset: 0px;
     --tw-translate-x: 0px;
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -1165,6 +1171,10 @@ a:hover {
     }
   }
 }
+
+/* Cart */
+
+/* Right menu */
 
 @media (min-width: 640px) {
   .sm\:h-10 {
