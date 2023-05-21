@@ -592,6 +592,18 @@ video {
   inset: 0px;
 }
 
+.-left-1 {
+  left: -0.25rem;
+}
+
+.-left-full {
+  left: -100%;
+}
+
+.bottom-0 {
+  bottom: 0px;
+}
+
 .right-0 {
   right: 0px;
 }
@@ -604,12 +616,20 @@ video {
   top: 0px;
 }
 
+.top-full {
+  top: 100%;
+}
+
 .z-10 {
   z-index: 10;
 }
 
 .z-20 {
   z-index: 20;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
 }
 
 .block {
@@ -656,6 +676,10 @@ video {
   height: 2rem;
 }
 
+.h-\[50vh\] {
+  height: 50vh;
+}
+
 .h-auto {
   height: auto;
 }
@@ -694,6 +718,14 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.w-14 {
+  width: 3.5rem;
+}
+
+.w-48 {
+  width: 12rem;
 }
 
 .max-w-\[130px\] {
@@ -760,8 +792,17 @@ video {
   gap: 1rem;
 }
 
+.rounded {
+  border-radius: 0.25rem;
+}
+
 .border {
   border-width: 1px;
+}
+
+.border-black {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
 
 .bg-red-400 {
@@ -769,8 +810,22 @@ video {
   background-color: rgb(248 113 113 / var(--tw-bg-opacity));
 }
 
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
 .fill-white {
   fill: #fff;
+}
+
+.object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.p-8 {
+  padding: 2rem;
 }
 
 .px-2 {
@@ -781,6 +836,10 @@ video {
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.pb-2 {
+  padding-bottom: 0.5rem;
 }
 
 .text-base {
@@ -801,6 +860,10 @@ video {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.font-bold {
+  font-weight: 700;
 }
 
 .italic {
@@ -884,10 +947,69 @@ body {
   overflow-x: hidden;
 }
 
+main {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  main {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  main {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  main {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  main {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  main {
+    max-width: 1536px;
+  }
+}
+
+main {
+  margin-top: 1rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+h1 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
 .container {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}
+
+a:hover {
+  --tw-text-opacity: 1;
+  color: rgb(75 85 99 / var(--tw-text-opacity));
 }
 
 /* Header Navigation */
@@ -998,16 +1120,12 @@ body {
 @media (min-width: 640px) {
   .sub-menu {
     position: absolute;
+    border-radius: 0.25rem;
     border-style: none;
     padding-right: 0px;
     --tw-bg-opacity: 1;
     background-color: rgb(255 255 255 / var(--tw-bg-opacity));
     padding: 1rem;
-    --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-    --tw-shadow-color: #9ca3af;
-    --tw-shadow: var(--tw-shadow-colored);
   }
 }
 

@@ -5,8 +5,20 @@
 body {
     @apply overflow-x-hidden;
 }
+main {
+    @apply container px-2 mt-4;
+}
+h1 {
+    @apply text-2xl font-bold;
+}
+h2 {
+    @apply text-xl;
+}
 .container {
     @apply transition-all duration-150;
+}
+a:hover {
+    @apply text-gray-600;
 }
 /* Header Navigation */
 .hamburger-menu {
@@ -31,8 +43,8 @@ body {
     @apply flex justify-end sm:justify-start;
 }
 .sub-menu {
-    @apply opacity-0 pointer-events-none -translate-y-3 absolute sm:absolute border-r-2 border-black pr-2 pt-1 sm:border-none sm:pr-0;
-    @apply sm:bg-white sm:shadow sm:shadow-gray-400 sm:p-4;
+    @apply opacity-0 sm:rounded pointer-events-none -translate-y-3 absolute sm:absolute border-r-2 border-black pr-2 pt-1 sm:border-none sm:pr-0;
+    @apply sm:bg-white sm:p-4;
     @apply transition-all;
 }
 
