@@ -1,24 +1,43 @@
-const primaryNav = document.querySelector("#primary-navigation")
-const navToggle = document.querySelector(".hamburger-menu")
-primaryNav.setAttribute("data-visible", "false")
+if (!isHasSelectorSupported()) {
+    const cartContainer = document.querySelector(".cart-container")
+    const cartInput = cartContainer.querySelector("input")
+    const navContainer = document.querySelector(".sidebar-container")
+    const navInput = navContainer.querySelector("input")
 
-navToggle.addEventListener("click", () => {
-    const html = document.querySelector("html")
-    const visibility = primaryNav.getAttribute("data-visible")
-
-    if (visibility === "false") {
-        primaryNav.setAttribute("data-visible", true)
-        navToggle.setAttribute("aria-expanded", true)
-    } else {
-        primaryNav.setAttribute("data-visible", false)
-        navToggle.setAttribute("aria-expanded", false)
-    }
-
-    html.addEventListener("click", (e) => {
-        console.log(e)
-        if (e.target != primaryNav && e.target != navToggle) {
-            primaryNav.setAttribute("data-visible", false)
-            navToggle.setAttribute("aria-expanded", false)
+    cartContainer.addEventListener("change", () => {
+        if (cartInput.checked) {
+            cartContainer.querySelector(".cart-sidebar").style.opacity = 1
+            cartContainer.querySelector(".cart-sidebar").style.transform = "translateX(0)"
+            cartContainer.querySelector(".close").style.setProperty('--rotate', '45deg')
+        } else {
+            cartContainer.querySelector(".cart-sidebar").style.opacity = 0
+            cartContainer.querySelector(".cart-sidebar").style.transform = "translateX(100%)"
+            cartContainer.querySelector(".close").style.setProperty('--rotate', '0deg')
         }
     })
-})
+    navContainer.addEventListener("change", () => {
+        if (navInput.checked) {
+            navContainer.querySelector(".nav-sidebar").style.opacity = 1
+            navContainer.querySelector(".nav-sidebar").style.transform = "translateX(0)"
+            navContainer.querySelector(".hamburger-menu").style.setProperty('--rotate', '45deg')
+            navContainer.querySelector(".hamburger-menu").style.right = '1em'
+        } else {
+            navContainer.querySelector(".nav-sidebar").style.opacity = 0
+            navContainer.querySelector(".nav-sidebar").style.transform = "translateX(100%)"
+            navContainer.querySelector(".hamburger-menu").style.setProperty('--rotate', '0deg')
+        }
+    })
+}
+
+
+function isHasSelectorSupported() {
+    const dummy = document.createElement('div')
+    dummy.innerHTML = '<p></p>'
+
+    try {
+        dummy.querySelector(':has(p)')
+        return true
+    } catch (error) {
+        return false
+    }
+}

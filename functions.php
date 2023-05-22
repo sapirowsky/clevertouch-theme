@@ -6,8 +6,8 @@ function setup(){
     wp_enqueue_style( 'stylesheet');
 
     // TailwindCSS
-    wp_register_style('tailwind', get_template_directory_uri() . '/assets/css/tailwind.css', '', 1, 'all');
-    wp_enqueue_style( 'tailwind');
+    wp_register_style('custom-css', get_template_directory_uri() . '/assets/css/custom-style.css', '', 1, 'all');
+    wp_enqueue_style( 'custom-css');
 
     // Custom js
     wp_register_script('custom', get_template_directory_uri() . '/assets/js/app.js', '', 1, true);
