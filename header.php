@@ -8,7 +8,7 @@
     <?php wp_head() ?>
 </head>
 <body <?php body_class() ?> >
-
+<div class="site">
 <header>
     <div class="container flex justify-between">
         <a href="<?php echo home_url() ?>" class="">
@@ -21,6 +21,9 @@
         </a>
 
         <div class="controls flex">
+            <a href="<?php echo get_permalink(get_option('woocommerce_myaccount_page_id')) ?>" class="account-container">
+                <img src="<?php echo get_template_directory_uri() . "/assets/img/user.svg" ?>" class="account-img" width="48px" height="48px" alt="account details">
+            </a>
             <div class="cart-container">
                 <label for="cart-checkbox" class="cart-icon">
                     <img src="<?php echo get_template_directory_uri() . "/assets/img/cart.svg" ?>" class="cart-img" width="48px" height="48px" alt="Karta">
