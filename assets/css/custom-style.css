@@ -1,44 +1,38 @@
+/* Settings */
+:root {
+  --control-sm: 2em;
+  --control-base: 2.5em;
+  --control-lg: 3em;
+}
+
 *,
-*::before,
-*::after {
+*::after,
+*::before {
   box-sizing: border-box;
+  transition: all 150ms ease;
 }
 
 body {
   margin: 0;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-a:hover,
-a:link,
-a:visited,
-a:active,
-a {
-  color: black;
-  text-decoration: none;
-}
-.site {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 .container {
   width: 100%;
   padding: 0 0.5em;
 }
+
 .flex {
   display: flex;
 }
-.flex-col {
-  flex-direction: column;
+
+.justify-center {
+  justify-content: center;
 }
+
 .justify-between {
   justify-content: space-between;
 }
+
 .sr-only {
   border: 0 !important;
   clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
@@ -52,19 +46,22 @@ a {
   width: 1px !important;
   white-space: nowrap !important; /* 3 */
 }
-header {
+
+/* Mobile first */
+
+/* Header & Sidebar */
+.header {
   width: 100%;
-  height: 4rem;
+  height: 4em;
+  display: grid;
+  place-items: center;
   padding: 1em 0;
-  display: flex;
-  justify-content: center;
   background-color: white;
   box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.5);
 }
 
 .logo {
-  display: block;
-  max-height: 32px;
+  max-height: var(--control-sm);
   height: auto;
   width: auto;
 }
@@ -72,291 +69,152 @@ header {
 .controls {
   gap: 0.5em;
 }
-.cart-container {
-  position: relative;
-  height: 32px;
-  width: 32px;
+
+.control-container input {
+  appearance: none;
+  margin: 0;
 }
-.cart-icon {
-  width: 32px;
-  height: 32px;
-  transition: opacity 150ms;
-}
-.account-container {
-  width: 32px;
-  height: 32px;
-  padding: 2px;
-}
-.account-img {
-  width: 100%;
-  height: 100%;
-}
-.cart-img {
-  width: 100%;
-  height: 100%;
-}
-.cart-icon:hover {
+
+.icon {
   cursor: pointer;
 }
-.cart-icon input {
-  appearance: none;
-  position: absolute;
+
+.icon img {
+  width: var(--control-sm);
+  height: var(--control-sm);
 }
-.cart-sidebar {
-  transform: translateX(100%);
-  opacity: 0;
-  --transition-timing: 150ms;
-  transition: transform var(--transition-timing),
-    opacity var(--transition-timing);
-  background-color: white;
-  position: fixed;
-  z-index: 30;
-  inset: 0 0 0 0;
-  padding: 1em 2em;
-}
-.cart-sidebar .close-container {
-  width: 100%;
-  display: flex;
-  justify-content: end;
-}
-.close-container .close {
-  width: 32px;
-  height: 32px;
-  display: flex;
+
+.sidebar-button {
+  --rotate: 0;
+  --width: 75%;
+  width: var(--control-sm);
+  aspect-ratio: 1;
   flex-direction: column;
   justify-content: space-between;
-  padding: 4px;
-  cursor: pointer;
-}
-.close-container .close {
-  --rotate: 0;
-}
-.close-container .close::before,
-.close-container .close::after {
-  content: "";
-  height: 5px;
-  background-color: black;
-  border-radius: 9999px;
-  transform-origin: right center;
-  --transition-duration: 150ms;
-  transition: rotate var(--transition-duration);
-  transition-delay: 100ms;
-}
-.cart-container:has(input:checked) .cart-icon {
-  opacity: 0;
-}
-.cart-container .close::before {
-  rotate: calc(var(--rotate) * -1);
-  width: 110%;
-}
-.cart-container .close::after {
-  rotate: var(--rotate);
-  width: 110%;
-}
-
-.cart-container:has(input:checked) .close::before {
-  --rotate: 45deg;
-  rotate: calc(var(--rotate) * -1);
-  width: 120%;
-}
-.cart-container:has(input:checked) .close::after {
-  --rotate: 45deg;
-  rotate: var(--rotate);
-  width: 120%;
-}
-
-@supports (backdrop-filter: blur(4px)) {
-  .cart-sidebar {
-    background: hsla(0, 0%, 50%, 0.5);
-    backdrop-filter: blur(4px);
-  }
-}
-.cart-icon:has(input:checked) + .cart-sidebar {
-  transform: translateX(0);
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.sidebar-container {
-  width: 32px;
-  height: 32px;
-}
-.hamburger-menu {
-  --rotate: 0;
-  position: absolute;
-  z-index: 20;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
   align-items: end;
-  right: auto;
-  width: 32px;
-  height: 32px;
   padding: 2px;
 }
-.hamburger-menu:hover,
-.hamburger-menu input {
+
+.sidebar-button:hover,
+.sidebar-button input {
   cursor: pointer;
 }
-
-.hamburger-menu::before,
-.hamburger-menu::after,
-.hamburger-menu input {
-  content: "";
-  height: 5px;
-  background-color: black;
-  border-radius: 9999px;
-  transform-origin: right center;
-  --transition-duration: 150ms;
-  transition: width var(--transition-duration),
-    opacity var(--transition-duration), rotate var(--transition-duration),
-    right var(--transition-duration);
-}
-.hamburger-menu::before,
-.hamburger-menu::after {
-  width: 75%;
-}
-.hamburger-menu input {
+.sidebar-button input {
   width: 100%;
   appearance: none;
   margin: 0;
 }
 
-.hamburger-menu::before {
+.sidebar-button::before,
+.sidebar-button::after,
+.sidebar-button input {
+  content: "";
+  height: 5px;
+  background-color: black;
+  border-radius: 9999px;
+  transform-origin: right center;
+}
+
+.sidebar-button::before,
+.sidebar-button::after {
+  width: var(--width);
+}
+
+.sidebar-button::before {
   rotate: calc(var(--rotate) * -1);
-  width: 100%;
+  width: var(--width);
+  transform: translateY(2px);
 }
-.hamburger-menu::after {
+.sidebar-button::after {
   rotate: var(--rotate);
-  width: 100%;
+  width: var(--width);
+  transform: translateY(-2px);
 }
-.hamburger-menu:has(input:checked)::before {
-  --rotate: 45deg;
-  rotate: calc(var(--rotate) * -1);
+
+.sidebar-button:has(input:checked)::before {
+  rotate: -45deg;
   width: 100%;
+  transform: translateY(2px);
 }
-.hamburger-menu:has(input:checked)::after {
-  --rotate: 45deg;
-  rotate: var(--rotate);
+.sidebar-button:has(input:checked)::after {
+  rotate: 45deg;
   width: 100%;
-}
-.hamburger-menu:has(input:checked) {
-  right: 1em;
+  transform: translateY(-2px);
 }
 input:checked {
   width: 0;
   opacity: 0;
 }
 
-.nav-sidebar {
-  transform: translateX(100%);
-  opacity: 0;
-  --transition-timing: 150ms;
-  transition: transform var(--transition-timing),
-    opacity var(--transition-timing);
-  background-color: white;
+.sidebar {
   position: fixed;
-  z-index: 10;
   inset: 0 0 0 0;
-  padding: 4em 2em;
+  pointer-events: none;
+  z-index: 10;
+  background-color: white;
+  opacity: 0;
+  transform: translateX(100%);
 }
-
-@supports (backdrop-filter: blur(4px)) {
-  .nav-sidebar {
-    background: hsla(0, 0%, 50%, 0.5);
-    backdrop-filter: blur(4px);
-  }
-}
-.hamburger-menu:has(input:checked) + .nav-sidebar {
-  transform: translateX(0);
+.sidebar-button:has(input:checked) + .sidebar,
+.icon:has(input:checked) + .sidebar {
   opacity: 1;
+  transform: translateX(0);
   pointer-events: auto;
 }
-
+/* First Breakpoint */
 @media (min-width: 640px) {
   .container {
     max-width: 640px;
   }
-  header {
-    height: 5rem;
+  /* Header & Sidebar */
+  .header {
+    height: 5em;
   }
   .logo {
-    max-height: 48px;
+    max-height: var(--control-lg);
   }
-  .account-container {
-    width: 48px;
-    height: 48px;
-    padding: 4px;
+  .icon img {
+    width: var(--control-lg);
+    height: var(--control-lg);
   }
-  .controls {
-    gap: 1em;
+  .sidebar-button {
+    width: var(--control-lg);
+    padding: 4px 2px;
   }
-  .cart-container {
-    height: 48px;
-    width: 48px;
-  }
-  .cart-icon {
-    width: 48px;
-    height: 48px;
-  }
-  .cart-sidebar .close {
-    width: 48px;
-    height: 48px;
-  }
-  .cart-sidebar .close::before,
-  .cart-sidebar .close::after {
-    height: 6px;
-    width: 120%;
-  }
-
-  .hamburger-menu {
-    width: 48px;
-    height: 48px;
-  }
-  .hamburger-menu::before,
-  .hamburger-menu::after,
-  .hamburger-menu input {
+  .sidebar-button::before,
+  .sidebar-button::after,
+  .sidebar-button input {
     height: 6px;
   }
-  .nav-sidebar {
+  .sidebar {
     inset: 0 0 0 40%;
-  }
-  .cart-sidebar {
-    inset: 0 0 0 40%;
-  }
-  .sidebar-container {
-    width: 48px;
-    height: 48px;
   }
 }
-
+/* Second Breakpoint */
 @media (min-width: 768px) {
   .container {
     max-width: 768px;
   }
-  .nav-sidebar {
-    inset: 0 0 0 50%;
-  }
-  .cart-sidebar {
+  .sidebar {
     inset: 0 0 0 50%;
   }
 }
+/* Third Breakpoint */
 @media (min-width: 1024px) {
   .container {
     max-width: 1024px;
   }
-  .nav-sidebar {
-    inset: 0 0 0 60%;
-  }
-  .cart-sidebar {
+  .sidebar {
     inset: 0 0 0 60%;
   }
 }
+/* Fourth Breakpoint */
 @media (min-width: 1280px) {
   .container {
     max-width: 1280px;
   }
 }
+/* Fifth Breakpoint */
 @media (min-width: 1536px) {
   .container {
     max-width: 1536px;
