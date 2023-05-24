@@ -8,7 +8,6 @@
     <?php wp_head() ?>
 </head>
 <body <?php body_class() ?> >
-<div class="site">
 <header class="header">
     <div class="container flex justify-between">
         <a href="<?php echo home_url() ?>" class="">
@@ -33,7 +32,6 @@
                     <div class="sidebar-close-container">
                         <label for="cart-checkbox">
                             <span class="sr-only">Zamknij nawigacje</span>
-                            X
                         </label>
                     </div>
                     <h1>Lista zakupów</h1>
@@ -49,7 +47,6 @@
                     <div class="sidebar-close-container">
                         <label for="nav-checkbox" class="sidebar-close">
                             <span class="sr-only">Zamknij nawigacje</span>
-                            X
                         </label>
                     </div>
                     <?php 
@@ -62,4 +59,5 @@
             </div>
         </div>
     </div>
+    
 </header>

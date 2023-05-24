@@ -46,7 +46,13 @@ body {
   width: 1px !important;
   white-space: nowrap !important; /* 3 */
 }
-
+noscript {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: lightcoral;
+  padding: 5px;
+}
 /* Mobile first */
 
 /* Header & Sidebar */
@@ -154,12 +160,51 @@ input:checked {
   background-color: white;
   opacity: 0;
   transform: translateX(100%);
+  padding: 1em;
 }
 .sidebar-button:has(input:checked) + .sidebar,
 .icon:has(input:checked) + .sidebar {
   opacity: 1;
   transform: translateX(0);
   pointer-events: auto;
+}
+
+.sidebar .sidebar-close-container {
+  display: flex;
+  justify-content: end;
+}
+.sidebar .sidebar-close-container label {
+  width: var(--control-sm);
+  height: var(--control-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.sidebar .sidebar-close-container label::before,
+.sidebar .sidebar-close-container label::after {
+  content: "";
+  width: 100%;
+  height: 5px;
+  background-color: black;
+  border-radius: 99999px;
+  transform-origin: right center;
+  transition-delay: 100ms;
+}
+.control-container
+  label:has(input:checked)
+  + .sidebar
+  .sidebar-close-container
+  label::before {
+  rotate: -45deg;
+  translate: 0 2px;
+}
+.control-container
+  label:has(input:checked)
+  + .sidebar
+  .sidebar-close-container
+  label::after {
+  rotate: 45deg;
+  translate: 0 -2px;
 }
 /* First Breakpoint */
 @media (min-width: 640px) {
@@ -188,6 +233,28 @@ input:checked {
   }
   .sidebar {
     inset: 0 0 0 40%;
+  }
+  .sidebar .sidebar-close-container label {
+    width: var(--control-lg);
+    height: var(--control-lg);
+  }
+  .sidebar .sidebar-close-container label::before,
+  .sidebar .sidebar-close-container label::after {
+    height: 6px;
+  }
+  .control-container
+    label:has(input:checked)
+    + .sidebar
+    .sidebar-close-container
+    label::before {
+    translate: 0 3px;
+  }
+  .control-container
+    label:has(input:checked)
+    + .sidebar
+    .sidebar-close-container
+    label::after {
+    translate: 0 -3px;
   }
 }
 /* Second Breakpoint */

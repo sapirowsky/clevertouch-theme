@@ -1,4 +1,6 @@
-if (!isHasSelectorSupported()) {
+// ------------------
+// if css isnt supported js handle interaction which css was supposed to do
+if (!isSelectorSupported()) {
     const cartContainer = document.querySelector(".cart-container")
     const cartInput = cartContainer.querySelector("input")
     const navContainer = document.querySelector(".sidebar-container")
@@ -29,8 +31,8 @@ if (!isHasSelectorSupported()) {
     })
 }
 
-
-function isHasSelectorSupported() {
+//Function checks if browser supports css by creating not existing in dom element and using desired css on it
+function isSelectorSupported() {
     const dummy = document.createElement('div')
     dummy.innerHTML = '<p></p>'
 
@@ -41,3 +43,7 @@ function isHasSelectorSupported() {
         return false
     }
 }
+// ------------------
+
+// custom login register page
+// const 
