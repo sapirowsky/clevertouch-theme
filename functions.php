@@ -38,32 +38,35 @@ add_theme_support( 'woocommerce' );
 add_theme_support( 'wc-product-gallery-zoom' );
 add_theme_support( 'wc-product-gallery-lightbox' );
 add_theme_support( 'wc-product-gallery-slider' );
+// Disable Woocommerce css
+
+add_filter('woocommerce_enqueue_styles', '__return_empty_array');
 
 
 // Custom login / register pages
-function custom_log_form(){
-    if(is_user_logged_in()) return '<p>Jesteś zalogowany!</p>';
-    ob_start();
-    do_action( 'woocommerce_before_customer_login_form' );
-    woocommerce_login_form([
-        'redirect' => wc_get_page_permalink('myaccount')
-    ]);
-    return ob_get_clean();
-}
-function custom_reg_form(){
-    if(is_user_logged_in()) return '<p>Jesteś zarejestrowany!</p>';
-    ob_start();
-   do_action( 'woocommerce_before_customer_login_form' );
-   $html = wc_get_template_html( 'myaccount/form-login.php' );
-   $dom = new DOMDocument();
-   $dom->encoding = 'utf-8';
-   $dom->loadHTML( utf8_decode( $html ) );
-   $xpath = new DOMXPath( $dom );
-   $form = $xpath->query( '//form[contains(@class,"register")]' );
-   $form = $form->item( 0 );
-   echo $dom->saveXML( $form );
-   return ob_get_clean();
-}
+// function custom_log_form(){
+//     if(is_user_logged_in()) return '<p>Jesteś zalogowany!</p>';
+//     ob_start();
+//     do_action( 'woocommerce_before_customer_login_form' );
+//     woocommerce_login_form([
+//         'redirect' => wc_get_page_permalink('myaccount')
+//     ]);
+//     return ob_get_clean();
+// }
+// function custom_reg_form(){
+//     if(is_user_logged_in()) return '<p>Jesteś zarejestrowany!</p>';
+//     ob_start();
+//    do_action( 'woocommerce_before_customer_login_form' );
+//    $html = wc_get_template_html( 'myaccount/form-login.php' );
+//    $dom = new DOMDocument();
+//    $dom->encoding = 'utf-8';
+//    $dom->loadHTML( utf8_decode( $html ) );
+//    $xpath = new DOMXPath( $dom );
+//    $form = $xpath->query( '//form[contains(@class,"register")]' );
+//    $form = $form->item( 0 );
+//    echo $dom->saveXML( $form );
+//    return ob_get_clean();
+// }
 // add_shortcode( 'wc_custom_log_form', 'custom_log_form');
 // add_shortcode( 'wc_custom_reg_form', 'custom_reg_form');
 // add_action( 'template_redirect', 'redirect_login_registration_if_logged_in' );

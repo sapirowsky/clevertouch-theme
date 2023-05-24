@@ -27,14 +27,53 @@
                 <label for="cart-checkbox" class="icon">
                     <img src="<?php echo get_template_directory_uri() . "/assets/img/cart.svg" ?>" width="48px" height="48px" alt="Koszyk">
                     <input id="cart-checkbox" type="checkbox">
+                    <?php if(WC()->cart->is_empty()): else: ?>
+                        <span class="items-count">
+                            <?php echo WC()->cart->get_cart_contents_count() ?>
+                        </span>
+                    <?php endif; ?>
                 </label>
                 <div class="sidebar">
                     <div class="sidebar-close-container">
+                        <h1>Koszyk</h1>
                         <label for="cart-checkbox">
                             <span class="sr-only">Zamknij nawigacje</span>
                         </label>
                     </div>
-                    <h1>Lista zakupów</h1>
+                    
+                    <div class="cart-items">
+                        <?php if(WC()->cart->is_empty()): ?>
+                            <div class="cart-item">
+                                <p>Nie masz jeszcze nic w koszyku!</p>
+                            </div>
+                        <?php else: ?>
+                            <?php foreach(WC()->cart->get_cart() as $cart_item_key => $cart_item):?>
+                                <?php $product = $cart_item['data'] ?>
+                                <a href="<?php echo $product->get_permalink( $cart_item ); ?>" class="cart-item">
+
+                                 <?php echo $product->get_image() ?>
+                                    <div>
+                                        <span>
+                                            <?php echo $product->get_name() ?>
+                                        </span>
+                                        <?php echo  WC()->cart->get_product_subtotal( $product, $cart_item['quantity'] ) ?>
+                                    </div>
+                                </a>
+                            <?php endforeach ?>
+                        <?php endif; ?>
+                    </div>
+                    <div class="cart-footer">
+                        <?php if(WC()->cart->is_empty()): ?>
+                            <label for="cart-checkbox">
+                                <span>Przeglądaj dalej</span>
+                            </label>
+                        <?php else: ?>
+                            <div class="cart-buttons">
+                                <a href="<?php echo wc_get_cart_url() ?>">Koszyk</a>
+                                <a href="<?php echo wc_get_checkout_url() ?>">Zapłać</a>
+                            </div>
+                        <?php endif; ?>
+                    </div>
                 </div>
 
             </div>
@@ -45,6 +84,7 @@
                 </label>
                 <nav class="sidebar">
                     <div class="sidebar-close-container">
+                        <h1>Nawigacja</h1>
                         <label for="nav-checkbox" class="sidebar-close">
                             <span class="sr-only">Zamknij nawigacje</span>
                         </label>
@@ -52,7 +92,7 @@
                     <?php 
                         wp_nav_menu([
                             'theme_location' => 'header-menu',
-                            'menu_class' => '',
+                            'container_class' => 'nav-items',
                         ])
                     ?>
                 </nav>
