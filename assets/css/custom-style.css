@@ -1,4 +1,5 @@
 /* Settings */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap");
 :root {
   --control-sm: 2em;
   --control-base: 2.5em;
@@ -17,6 +18,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: "Open Sans", sans-serif;
 }
 h1 {
   margin: 0;
@@ -57,6 +59,14 @@ noscript {
   right: 0;
   background-color: lightcoral;
   padding: 5px;
+}
+
+.custom-hide {
+  transition: all 0ms;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  visibility: hidden;
 }
 /* Mobile first */
 
@@ -197,6 +207,8 @@ input:checked {
   align-items: center;
 }
 .sidebar .sidebar-close-container label {
+  --rotate: 0;
+  --transformY-data: 0;
   width: var(--control-sm);
   height: var(--control-sm);
   display: flex;
@@ -206,7 +218,6 @@ input:checked {
 }
 .sidebar .sidebar-close-container label::before,
 .sidebar .sidebar-close-container label::after {
-  --rotate: 0;
   content: "";
   width: 100%;
   height: 5px;
@@ -215,11 +226,14 @@ input:checked {
   transform-origin: right center;
   transition-delay: 100ms;
 }
-/* .sidebar-close-container label::before {
+.sidebar-close-container label::before {
+  rotate: calc(var(--rotate) * -1);
+  transform: translateY(var(--transformY-data));
 }
 .sidebar-close-container label::after {
-  rotate: ;
-} */
+  rotate: var(--rotate);
+  transform: translateY(calc(-1 * var(--transformY-data)));
+}
 .control-container
   label:has(input:checked)
   + .sidebar
@@ -244,6 +258,30 @@ input:checked {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
+}
+
+.behind-sidebar {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  background-color: gray;
+  opacity: 0;
+  backdrop-filter: blur(20px);
+  pointer-events: none;
+}
+
+.control-container:has(input:checked) .behind-sidebar {
+  opacity: 0.5;
+  pointer-events: all;
+}
+.nav-items a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-items ul {
+  list-style-type: none;
+  padding: 0;
 }
 
 .sidebar .cart-item {
@@ -291,6 +329,89 @@ input:checked {
   background-color: darkgray;
   color: black;
   cursor: pointer;
+}
+
+/* LOGIN / REGISTER PAGE */
+.woocommerce {
+  display: grid;
+  place-items: center;
+}
+#customer_login {
+  display: grid;
+  place-items: start center;
+  width: 100%;
+}
+#customer_login > div {
+  max-width: 420px;
+  width: 100%;
+}
+#customer_login p {
+  display: flex;
+  flex-direction: column;
+}
+#customer_login input {
+  border: 1px solid gray;
+  padding: 0.5em;
+  border-radius: 0px;
+}
+#customer_login input[type="password"],
+#customer_login input[type="text"] {
+  width: 100%;
+}
+#customer_login button {
+  padding: 0.5em;
+  border: none;
+  background-color: #081537;
+  color: white;
+}
+.woocommerce-notices-wrapper ul {
+  list-style: none;
+  padding: 0;
+}
+.password-input {
+  position: relative;
+}
+.show-password-input {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 32px;
+  background-image: url("../img/eye.svg");
+  background-repeat: no-repeat;
+}
+.woocommerce-MyAccount-navigation {
+  width: 100%;
+}
+.woocommerce-MyAccount-navigation ul {
+  width: 100%;
+  max-width: 90vw;
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  /* gap: 0.5em; */
+  overflow-x: scroll;
+}
+.woocommerce-MyAccount-navigation ul::-webkit-scrollbar {
+  height: 5px;
+}
+.woocommerce-MyAccount-navigation ul::-webkit-scrollbar-thumb {
+  height: 5px;
+  background-color: black;
+}
+
+.woocommerce-MyAccount-navigation ul li {
+  white-space: nowrap;
+  padding: 0.5em;
+}
+
+.woocommerce-MyAccount-navigation a {
+  text-decoration: none;
+  color: inherit;
+}
+#customer_login .woocommerce-privacy-policy-text p a {
+  display: inline;
 }
 /* First Breakpoint */
 @media (min-width: 640px) {
@@ -363,6 +484,11 @@ input:checked {
   }
   .sidebar {
     inset: 0 0 0 60%;
+  }
+  #customer_login {
+    display: flex;
+    justify-content: center;
+    gap: 3em;
   }
 }
 /* Fourth Breakpoint */

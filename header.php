@@ -24,6 +24,7 @@
                 <img src="<?php echo get_template_directory_uri() . "/assets/img/user.svg" ?>" style="padding: 2px;" width="48px" height="48px" alt="Konto">
             </a>
             <div class="control-container">
+                <label for="cart-checkbox" class="behind-sidebar"></label>
                 <label for="cart-checkbox" class="icon">
                     <img src="<?php echo get_template_directory_uri() . "/assets/img/cart.svg" ?>" width="48px" height="48px" alt="Koszyk">
                     <input id="cart-checkbox" type="checkbox">
@@ -78,6 +79,7 @@
 
             </div>
             <div class="control-container">
+                <label for="nav-checkbox" class="behind-sidebar"></label>
                 <label for="nav-checkbox" class="sidebar-button flex">
                     <span class="sr-only">Otwórz nawigacje</span>
                     <input id="nav-checkbox" type="checkbox" />
