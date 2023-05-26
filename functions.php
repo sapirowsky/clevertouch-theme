@@ -6,8 +6,8 @@ function setup(){
     wp_enqueue_style( 'stylesheet');
 
     // TailwindCSS
-    wp_register_style('custom-css', get_template_directory_uri() . '/assets/css/custom-style.css', '', 1, 'all');
-    wp_enqueue_style( 'custom-css');
+    // wp_register_style('custom-css', get_template_directory_uri() . '/assets/css/custom-style.css', '', 1, 'all');
+    // wp_enqueue_style( 'custom-css');
 
     // Custom js
     wp_register_script('custom', get_template_directory_uri() . '/assets/js/app.js', '', 1, true);
@@ -20,7 +20,6 @@ add_action( 'wp_enqueue_scripts', 'setup');
 add_theme_support( 'title-tag' );
 add_theme_support( 'custom-logo' );
 add_theme_support( 'menus' );
-
 
 
 // Filter jpg => webp
@@ -38,49 +37,62 @@ add_theme_support( 'woocommerce' );
 add_theme_support( 'wc-product-gallery-zoom' );
 add_theme_support( 'wc-product-gallery-lightbox' );
 add_theme_support( 'wc-product-gallery-slider' );
+
+ if ( class_exists( 'woocommerce' ) ) {
+
+      function wp_wc_my_account_shortcode_handler( $atts ) {
+
+        $whichClass = new WC_Shortcodes();
+        $wrapper = array(
+          'class'  => 'woocommerce my-account-custom',
+          'before' => null,
+          'after'  => null
+        );
+
+        return $whichClass->shortcode_wrapper( array( 'WC_Shortcode_My_Account', 'output' ), $atts , $wrapper );
+
+      }
+
+      add_shortcode( 'new_woocommerce_my_account', 'wp_wc_my_account_shortcode_handler' );
+    } 
+
+
+
+
 // Disable Woocommerce css
 
 add_filter('woocommerce_enqueue_styles', '__return_empty_array');
 
+function woocommerce_filter_sidebar() {
+    register_sidebar( array(
+        'name'          => __( 'WooCommerce Filters', 'your-theme-textdomain' ),
+        'id'            => 'woocommerce-filters',
+        'description'   => __( 'Add widgets here to display filters for WooCommerce products.', 'your-theme-textdomain' ),
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h3 class="widget-title">',
+        'after_title'   => '</h3>',
+    ) );
+}
+add_action( 'widgets_init', 'woocommerce_filter_sidebar' );
 
-// Custom login / register pages
-// function custom_log_form(){
-//     if(is_user_logged_in()) return '<p>Jesteś zalogowany!</p>';
-//     ob_start();
-//     do_action( 'woocommerce_before_customer_login_form' );
-//     woocommerce_login_form([
-//         'redirect' => wc_get_page_permalink('myaccount')
-//     ]);
-//     return ob_get_clean();
+function wcc_change_breadcrumb_delimiter( $defaults ) {
+	// Change the breadcrumb delimeter from '/' to '>'
+	$defaults['delimiter'] = ' &gt; ';
+	return $defaults;
+}
+add_filter( 'woocommerce_breadcrumb_defaults', 'wcc_change_breadcrumb_delimiter', 20 );
+
+// function wcc_change_breadcrumb_home_text( $defaults ) {
+//     // Change the breadcrumb home text from 'Home' to 'Apartment'
+// 	$defaults['home'] = 'Sklep';
+// 	return $defaults;
 // }
-// function custom_reg_form(){
-//     if(is_user_logged_in()) return '<p>Jesteś zarejestrowany!</p>';
-//     ob_start();
-//    do_action( 'woocommerce_before_customer_login_form' );
-//    $html = wc_get_template_html( 'myaccount/form-login.php' );
-//    $dom = new DOMDocument();
-//    $dom->encoding = 'utf-8';
-//    $dom->loadHTML( utf8_decode( $html ) );
-//    $xpath = new DOMXPath( $dom );
-//    $form = $xpath->query( '//form[contains(@class,"register")]' );
-//    $form = $form->item( 0 );
-//    echo $dom->saveXML( $form );
-//    return ob_get_clean();
-// }
-// add_shortcode( 'wc_custom_log_form', 'custom_log_form');
-// add_shortcode( 'wc_custom_reg_form', 'custom_reg_form');
-// add_action( 'template_redirect', 'redirect_login_registration_if_logged_in' );
-// add_action( 'template_redirect', 'redirect_login_registration_if_not_logged_in' );
- 
-// function redirect_login_registration_if_logged_in() {
-//     if ( is_page() && is_user_logged_in() && ( has_shortcode( get_the_content(), 'wc_custom_log_form' ) || has_shortcode( get_the_content(), 'wc_custom_reg_form' ) ) ) {
-//         wp_safe_redirect( wc_get_page_permalink( 'myaccount' ) );
-//         exit;
-//     }
-// }
-// function redirect_login_registration_if_not_logged_in() {
-//     if ( is_page() && !is_user_logged_in() && (has_shortcode( get_the_content(), 'woocommerce_my_account' ))) {
-//         wp_safe_redirect( wc_get_page_permalink( 'login' ) );
-//         exit;
-//     }
-// }
+
+// add_filter( 'woocommerce_breadcrumb_defaults', 'wcc_change_breadcrumb_home_text', 20 );
+
+
+//  add_filter( 'woocommerce_breadcrumb_home_url', 'woo_custom_breadrumb_home_url' );
+ /*Change the breadcrumb home link URL from / to /shop.
+ @return string New URL for Home link item. */
+//  function woo_custom_breadrumb_home_url() { return '/sklep/'; } 

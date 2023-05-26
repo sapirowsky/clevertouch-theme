@@ -55,8 +55,12 @@ function isSelectorSupported() {
 // custom login register page
 let loginRegisterContainer
 if (loginRegisterContainer = document.querySelector("#customer_login")) {
+    const woocommerce = document.querySelector(".woocommerce")
+    woocommerce.style.display = "flex"
+    woocommerce.style.justifyContent = "center"
     loginRegisterContainer.style.maxWidth = "500px"
-    loginRegisterContainer.style.display = "block"
+    loginRegisterContainer.style.display = "grid"
+    loginRegisterContainer.style.gap = "0"
     const loginPage = loginRegisterContainer.querySelector(".u-column1")
     const registerPage = loginRegisterContainer.querySelector(".u-column2")
     registerPage.classList.add("custom-hide")
