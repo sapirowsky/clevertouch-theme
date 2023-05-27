@@ -30,7 +30,7 @@ function map_jpeg_to_webp( $formats ) {
 add_filter( 'image_editor_output_format', 'map_jpeg_to_webp' );
 
 // Register menus
-register_nav_menu( 'header-menu', __( 'Menu nagłówka', 'clevertouch-shop-theme' ) );
+register_nav_menu( 'header-menu', __( 'Menu nagłówka', 'clevertouch-shop' ) );
 
 // Woocommerce support
 add_theme_support( 'woocommerce' );
@@ -59,22 +59,66 @@ add_theme_support( 'wc-product-gallery-slider' );
 
 
 
+// if ( function_exists('register_sidebar') ) {
+//   register_sidebar([
+//     'name' => "woo sidebar",
+//     'id' => 'woocommerce_sidebar',
+//   'before_widget' => '', 
+//   'after_widget' => '', 
+//   'before_title' => '<h4>', 
+//   'after_title' => '</h4>', 
+//   ]);
+// }
+
+
+// function arphabet_widgets_init() {
+// 	register_sidebar( array(
+// 		'name'          => 'WooCommerce Sidebar',
+// 		'id'            => 'woocommerce_sidebar',
+// 		'before_widget' => '<div>',
+// 		'after_widget'  => '</div>',
+// 		'before_title'  => '<h4>',
+// 		'after_title'   => '</h4>',
+// 	) );
+// }
+// add_action( 'widgets_init', 'arphabet_widgets_init' );
+
+// /* Tom's code */
+// add_action( 'wp', function() {
+//     remove_action( 'woocommerce_sidebar', 'generate_construct_sidebars' );
+
+//     add_action( 'woocommerce_sidebar', function() {
+//         get_sidebar( 'woocommerce' );
+//     } );
+// } );
+function my_theme_register_woocommerce_sidebar() {
+    register_sidebar( array(
+        'name' => 'WooCommerce Sidebar',
+        'id' => 'woocommerce_sidebar',
+        'description' => 'Sidebar for WooCommerce pages',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<h4 class="widget-title">',
+        'after_title' => '</h4>',
+    ));
+}
+add_action( 'widgets_init', 'my_theme_register_woocommerce_sidebar' );
 // Disable Woocommerce css
 
-add_filter('woocommerce_enqueue_styles', '__return_empty_array');
+// add_filter('woocommerce_enqueue_styles', '__return_empty_array');
 
-function woocommerce_filter_sidebar() {
-    register_sidebar( array(
-        'name'          => __( 'WooCommerce Filters', 'your-theme-textdomain' ),
-        'id'            => 'woocommerce-filters',
-        'description'   => __( 'Add widgets here to display filters for WooCommerce products.', 'your-theme-textdomain' ),
-        'before_widget' => '<div id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h3 class="widget-title">',
-        'after_title'   => '</h3>',
-    ) );
-}
-add_action( 'widgets_init', 'woocommerce_filter_sidebar' );
+// function woocommerce_filter_sidebar() {
+//     register_sidebar( array(
+//         'name'          => __( 'WooCommerce Filters', 'your-theme-textdomain' ),
+//         'id'            => 'woocommerce-filters',
+//         'description'   => __( 'Add widgets here to display filters for WooCommerce products.', 'your-theme-textdomain' ),
+//         'before_widget' => '<div id="%1$s" class="widget %2$s">',
+//         'after_widget'  => '</div>',
+//         'before_title'  => '<h3 class="widget-title">',
+//         'after_title'   => '</h3>',
+//     ) );
+// }
+// add_action( 'widgets_init', 'woocommerce_filter_sidebar' );
 
 function wcc_change_breadcrumb_delimiter( $defaults ) {
 	// Change the breadcrumb delimeter from '/' to '>'
