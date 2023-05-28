@@ -5,9 +5,9 @@
             woocommerce_breadcrumb();
         }
     ?>
-    <?php
-        dynamic_sidebar( 'woocommerce_sidebar' )
-    ?>
+    <!-- <?php
+        // dynamic_sidebar( 'woocommerce_sidebar' )
+    ?> -->
     
     
     <?php woocommerce_content() ?>

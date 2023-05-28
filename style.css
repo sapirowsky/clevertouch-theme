@@ -135,7 +135,7 @@ noscript {
   border-radius: 9999px;
   display: grid;
   place-items: center;
-  box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.5);
+  border: 1px solid gray;
 }
 
 .icon {
@@ -337,37 +337,50 @@ a {
 .woocommerce .woocommerce-breadcrumb a:hover {
   color: #767676;
 }
+.wp-block-button__link {
+  background-color: #081537;
+  color: white;
+  border: 1px solid transparent;
+  border-radius: 0;
+}
+.wp-block-button__link:hover {
+  background-color: white;
+  color: #081537;
+  border: 1px solid #081537;
+}
 .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles))
   button.button.alt {
   background-color: #081537;
   color: white;
+  border: 1px solid white;
+  border-radius: 0;
 }
 .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles))
   button.button.alt:hover {
   background-color: white;
   color: #081537;
   border: 1px solid #081537;
+  border-radius: 0;
 }
 .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles))
   a.button {
   background-color: #081537;
   color: white;
+  border: 1px solid white;
+  border-radius: 0;
 }
 .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles))
   a.button:hover {
   background-color: white;
   color: #081537;
   border: 1px solid #081537;
+  border-radius: 0;
 }
 .products {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* .columns-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-} */
 
 .sidebar .cart-item {
   font-size: large;
@@ -523,12 +536,12 @@ a {
 .woocommerce form input {
   padding: 0.5em;
 }
-.woocommerce-MyAccount-navigation {
-  width: 100%;
+.woocommerce-account .woocommerce-MyAccount-navigation {
+  width: max-content;
+  max-width: 100%;
 }
+
 .woocommerce-MyAccount-navigation ul {
-  width: 100%;
-  max-width: 90vw;
   list-style-type: none;
   padding: 1em;
   display: flex;
@@ -541,7 +554,8 @@ a {
 .woocommerce-MyAccount-navigation ul li {
   white-space: nowrap;
   padding: 0.5em;
-  box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.5);
+  border: 1px solid gray;
+  border-radius: 5px;
   display: grid;
   place-content: center;
 }
@@ -552,6 +566,9 @@ a {
 .woocommerce-MyAccount-navigation a {
   text-decoration: none;
   color: inherit;
+}
+.woocommerce-account .woocommerce-MyAccount-content {
+  width: 100%;
 }
 #customer_login .woocommerce-privacy-policy-text p a {
   display: inline;
