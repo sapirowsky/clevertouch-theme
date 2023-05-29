@@ -28,11 +28,11 @@
                 <label for="cart-checkbox" class="icon">
                     <img src="<?php echo get_template_directory_uri() . "/assets/img/cart.svg" ?>" width="48px" height="48px" alt="Koszyk">
                     <input id="cart-checkbox" type="checkbox">
-                    <?php if(WC()->cart->is_empty()): else: ?>
-                        <span class="items-count">
-                            <?php echo WC()->cart->get_cart_contents_count() ?>
-                        </span>
-                    <?php endif; ?>
+                    <?php $items_count = WC()->cart->get_cart_contents_count() ?>
+                    <span class="items-count">
+                        <?php echo $items_count ? $items_count : 0 ?>
+                    </span>
+               
                 </label>
                 <div class="sidebar">
                     <div class="sidebar-close-container">
@@ -41,14 +41,16 @@
                             <span class="sr-only">Zamknij nawigacje</span>
                         </label>
                     </div>
-                    
+                    <?php $isCartEmpty = WC()->cart->is_empty() ?>
                     <div class="cart-items">
-                        <?php if(WC()->cart->is_empty()): ?>
+                        <?php if($isCartEmpty): ?>
                             <div class="cart-item">
                                 <p>Nie masz jeszcze nic w koszyku!</p>
                             </div>
                         <?php else: ?>
-                            <?php foreach(WC()->cart->get_cart() as $cart_item_key => $cart_item):?>
+                            <?php
+                                $cartItems = WC()->cart->get_cart();
+                                foreach($cartItems as $cart_item_key => $cart_item):?>
                                 <?php $product = $cart_item['data'] ?>
                                 <a href="<?php echo $product->get_permalink( $cart_item ); ?>" class="cart-item">
 

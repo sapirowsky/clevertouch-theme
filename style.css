@@ -82,7 +82,7 @@ main.container {
   white-space: nowrap !important; /* 3 */
 }
 noscript {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 0;
   background-color: lightcoral;
@@ -347,6 +347,9 @@ a {
   background-color: white;
   color: #081537;
   border: 1px solid #081537;
+}
+.added_to_cart {
+  margin-left: 0.5em;
 }
 .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles))
   button.button.alt {
