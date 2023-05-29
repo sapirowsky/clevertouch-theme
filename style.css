@@ -81,20 +81,21 @@ main.container {
   width: 1px !important;
   white-space: nowrap !important; /* 3 */
 }
-noscript {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  background-color: lightcoral;
-  padding: 5px;
-}
-
 .custom-hide {
   transition: all 0ms;
   opacity: 0;
   pointer-events: none;
   position: absolute;
   visibility: hidden;
+}
+
+.noscript {
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
+  right: 0;
+  background-color: lightcoral;
+  padding: 5px;
 }
 /* Mobile first */
 
@@ -126,8 +127,8 @@ noscript {
   margin: 0;
 }
 .control-container .items-count {
-  width: 1em;
-  height: 1em;
+  width: 1.25em;
+  height: 1.25em;
   background-color: white;
   position: absolute;
   right: 0;
@@ -213,7 +214,7 @@ input:checked {
   position: fixed;
   inset: 0 0 0 0;
   pointer-events: none;
-  z-index: 10;
+  z-index: 20;
   background-color: white;
   opacity: 0;
   transform: translateX(100%);
@@ -284,9 +285,13 @@ input:checked {
 .nav-items .sub-menu {
   display: none;
 }
-.nav-items li {
+.nav-items ul li a {
   border-bottom: 1px solid hsl(0, 0%, 75%);
 }
+.nav-items ul li a:hover {
+  background-color: lightgray;
+}
+
 .nav-items li a {
   display: block;
   padding: 1em;
@@ -307,7 +312,7 @@ input:checked {
 .behind-sidebar {
   position: fixed;
   inset: 0;
-  z-index: 5;
+  z-index: 15;
   background-color: gray;
   opacity: 0;
   backdrop-filter: blur(20px);
@@ -511,6 +516,8 @@ a {
   button.button.alt {
   background-color: #081537;
   color: white;
+  border: 1px solid transparent;
+  border-radius: 0;
 }
 :where(body:not(.woocommerce-block-theme-has-button-styles))
   .woocommerce
@@ -518,12 +525,15 @@ a {
   background-color: white;
   color: #081537;
   border: 1px solid #081537;
+  border-radius: 0;
 }
 :where(body:not(.woocommerce-block-theme-has-button-styles))
   .woocommerce
   a.button.alt {
   background-color: #081537;
   color: white;
+  border: 1px solid transparent;
+  border-radius: 0;
 }
 :where(body:not(.woocommerce-block-theme-has-button-styles))
   .woocommerce
@@ -531,6 +541,7 @@ a {
   border: 1px solid #081537;
   background-color: white;
   color: #081537;
+  border-radius: 0;
 }
 #customer-details {
   display: flex;

@@ -96,7 +96,7 @@
                     <?php 
                         wp_nav_menu([
                             'theme_location' => 'header-menu',
-                            'container_class' => 'nav-items',
+                            'container_class' => 'nav-items'
                         ])
                     ?>
                 </nav>

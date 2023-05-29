@@ -98,8 +98,32 @@ if (loginRegisterContainer = document.querySelector("#customer_login")) {
 
 
 }
+// ------------------
 
-// function
+// sub-menu
+const navItems = document.querySelectorAll('.nav-items ul li')
+navItems.forEach(item => {
+    if (item.querySelector('ul')) {
+        const itemLink = item.querySelector('a')
+        itemLink.setAttribute('href', '#')
+        itemLink.style.display = 'flex'
+        itemLink.style.justifyContent = 'space-between'
+        const span = document.createElement('span')
+        span.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="currentColor" d="M8.025 22L6.25 20.225L14.475 12L6.25 3.775L8.025 2l10 10l-10 10Z"/></svg>'
+        itemLink.appendChild(span)
 
+        itemLink.addEventListener('click', () => {
+            const itemChild = item.querySelector(".sub-menu")
+            if (itemChild.style.display === 'block') {
+                itemChild.style.display = 'none'
+                span.style.rotate = "0deg"
+            } else {
+                itemChild.style.display = 'block'
+                itemChild.style.marginLeft += '.5em'
+                span.style.rotate = "90deg"
+            }
+        })
+    }
+})
 
 // ------------------
