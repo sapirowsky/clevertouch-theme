@@ -69,6 +69,7 @@ add_filter( 'woocommerce_breadcrumb_defaults', 'wcc_change_breadcrumb_delimiter'
 // Update cart
 add_filter('woocommerce_add_to_cart_fragments', 'wc_refresh_cart_count');
 add_filter('woocommerce_add_to_cart_fragments', 'wc_refresh_cart_items');
+add_filter('woocommerce_add_to_cart_fragments', 'wc_refresh_cart_buttons');
 function wc_refresh_cart_count($fragments){
   ob_start();
   $items_count = WC()->cart->get_cart_contents_count();
@@ -109,5 +110,24 @@ function wc_refresh_cart_items($fragments){
   </div>
   <?php
     $fragments['.cart-items'] = ob_get_clean();
+    return $fragments;
+}
+function wc_refresh_cart_buttons($fragments){
+  ob_start();
+  ?>
+   <div class="cart-footer">
+        <?php if(WC()->cart->is_empty()): ?>
+            <label for="cart-checkbox">
+                <span>Przeglądaj dalej</span>
+            </label>
+        <?php else: ?>
+            <div class="cart-buttons">
+                <a href="<?php echo wc_get_cart_url() ?>">Koszyk</a>
+                <a href="<?php echo wc_get_checkout_url() ?>">Zapłać</a>
+            </div>
+        <?php endif; ?>
+    </div>
+  <?php
+    $fragments['.cart-footer'] = ob_get_clean();
     return $fragments;
 }
