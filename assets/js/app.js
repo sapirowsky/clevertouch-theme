@@ -57,7 +57,8 @@ let loginRegisterContainer
 if (loginRegisterContainer = document.querySelector("#customer_login")) {
     const woocommerce = document.querySelector(".woocommerce")
     woocommerce.style.display = "flex"
-    woocommerce.style.justifyContent = "center"
+    woocommerce.style.flexDirection = "column"
+    woocommerce.style.alignItems = "center"
     loginRegisterContainer.style.maxWidth = "500px"
     loginRegisterContainer.style.display = "grid"
     loginRegisterContainer.style.gap = "0"

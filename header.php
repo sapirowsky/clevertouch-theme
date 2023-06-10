@@ -8,7 +8,8 @@
     <?php wp_head() ?>
 </head>
 <body <?php body_class() ?> >
-<header class="header">
+<div class="content">
+<header>
     <div class="container flex justify-between">
         <a href="<?php echo home_url() ?>" class="">
             <?php if ( has_custom_logo() ): ?>
