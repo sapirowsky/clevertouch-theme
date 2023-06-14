@@ -1,6 +1,6 @@
     <footer class="flex justify-center">
         <div class="container">
-            <div class="copy">&copy; <?php echo date("Y") ?> CleverTouch. Wszystkie prawa zastrzeżone</div>
+            <div class="copy">&copy; <?php echo date("Y") ?> CleverTouch. Wszystkie prawa zastrzeżone.</div>
         </div>
     </footer>
     </div>
