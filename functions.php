@@ -40,21 +40,21 @@ add_theme_support( 'wc-product-gallery-slider' );
 
  if ( class_exists( 'woocommerce' ) ) {
 
-      function wp_wc_my_account_shortcode_handler( $atts ) {
+  function wp_wc_my_account_shortcode_handler( $atts ) {
 
-        $whichClass = new WC_Shortcodes();
-        $wrapper = array(
-          'class'  => 'woocommerce my-account-custom',
-          'before' => null,
-          'after'  => null
-        );
+    $whichClass = new WC_Shortcodes();
+    $wrapper = array(
+      'class'  => 'woocommerce my-account-custom',
+      'before' => null,
+      'after'  => null
+    );
 
-        return $whichClass->shortcode_wrapper( array( 'WC_Shortcode_My_Account', 'output' ), $atts , $wrapper );
+    return $whichClass->shortcode_wrapper( array( 'WC_Shortcode_My_Account', 'output' ), $atts , $wrapper );
 
-      }
+  }
 
-      add_shortcode( 'new_woocommerce_my_account', 'wp_wc_my_account_shortcode_handler' );
-    } 
+  add_shortcode( 'new_woocommerce_my_account', 'wp_wc_my_account_shortcode_handler' );
+} 
 
 
 function wcc_change_breadcrumb_delimiter( $defaults ) {
@@ -131,3 +131,13 @@ function wc_refresh_cart_buttons($fragments){
     $fragments['.cart-footer'] = ob_get_clean();
     return $fragments;
 }
+
+
+// add_action( 'template_redirect', 'redirectUserIfLoggedIn' );
+ 
+// function redirectUserIfLoggedIn() {
+//     if ( is_page() && is_user_logged_in() && ( has_shortcode( get_the_content(), 'wc_log_user' ) || has_shortcode( get_the_content(), 'wc_reg_user' ) ) ) {
+//         wp_safe_redirect( wc_get_page_permalink( 'myaccount' ) );
+//         exit;
+//     }
+// }
