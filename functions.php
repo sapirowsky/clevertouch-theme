@@ -132,12 +132,19 @@ function wc_refresh_cart_buttons($fragments){
     return $fragments;
 }
 
-
-// add_action( 'template_redirect', 'redirectUserIfLoggedIn' );
- 
-// function redirectUserIfLoggedIn() {
-//     if ( is_page() && is_user_logged_in() && ( has_shortcode( get_the_content(), 'wc_log_user' ) || has_shortcode( get_the_content(), 'wc_reg_user' ) ) ) {
-//         wp_safe_redirect( wc_get_page_permalink( 'myaccount' ) );
-//         exit;
-//     }
-// }
+// Custom stock status
+add_filter('woocommerce_get_availability_text', 'changeAvailabilityText',99,2);
+function changeAvailabilityText($availability, $product){
+  $stock = $product->get_stock_quantity();
+  if($product->is_in_stock() && $product->managing_stock()){
+    if($stock < 5) return "<span style='color: red;'>Mało produktów w magazynie</span>";
+    if($stock < 20) return "<span style='color: orange;'>Średnia ilość produktów w magazynie</span>";
+    return "Na stanie";
+  }
+}
+// disable out of stock variation
+add_filter('woocommerce_variation_is_active', 'disableOutOfStockVariation', 10, 2);
+function disableOutOfStockVariation($is_active, $variation){
+  if(!$variation->is_in_stock()) return false;
+  return $is_active;
+}

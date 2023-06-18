@@ -435,6 +435,7 @@ a {
 .sidebar .cart-item img {
   width: calc(50% - 0.5em / 2);
   min-width: 100px;
+  max-width: 220px;
   height: auto;
   margin-left: auto;
   margin-right: auto;
