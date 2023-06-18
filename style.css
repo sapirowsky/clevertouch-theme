@@ -432,6 +432,11 @@ a {
   margin-left: auto;
   margin-right: auto;
 }
+/* .sidebar .cart-item div span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+} */
 .sidebar .cart-item img {
   width: calc(50% - 0.5em / 2);
   min-width: 100px;
@@ -479,31 +484,10 @@ a {
   border: 1px solid #081537;
 }
 /* LOGIN / REGISTER PAGE */
-.woocommerce:has(.woocommerce-MyAccount-navigation) {
-  display: flex;
-  flex-direction: column;
-}
-#customer_login {
-  display: grid;
-  place-items: start center;
-  width: 100%;
-}
-#customer_login > div {
-  max-width: 420px;
-  width: 100%;
-}
-#customer_login p {
-  display: flex;
-  flex-direction: column;
-}
 #customer_login input {
   border: 1px solid gray;
   padding: 0.5em;
   border-radius: 0px;
-}
-#customer_login input[type="password"],
-#customer_login input[type="text"] {
-  width: 100%;
 }
 #customer_login button {
   padding: 0.5em;

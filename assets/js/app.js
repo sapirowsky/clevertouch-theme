@@ -1,7 +1,4 @@
 
-// temp - helpers
-// const openCart = document.querySelector("#cart-checkbox").checked = 1
-// const openNav = document.querySelector("#nav-checkbox").checked = 1
 // ------------------
 // if css is not supported js handle interaction which css was supposed to do
 if (!isSelectorSupported()) {
@@ -50,55 +47,7 @@ function isSelectorSupported() {
         return false
     }
 }
-// ------------------
 
-// custom login register page
-// let loginRegisterContainer
-// if (loginRegisterContainer = document.querySelector("#customer_login")) {
-//     const woocommerce = document.querySelector(".woocommerce")
-//     woocommerce.style.display = "flex"
-//     woocommerce.style.flexDirection = "column"
-//     woocommerce.style.alignItems = "center"
-//     loginRegisterContainer.style.maxWidth = "500px"
-//     loginRegisterContainer.style.display = "grid"
-//     loginRegisterContainer.style.gap = "0"
-//     const loginPage = loginRegisterContainer.querySelector(".u-column1")
-//     const registerPage = loginRegisterContainer.querySelector(".u-column2")
-//     registerPage.classList.add("custom-hide")
-
-//     const container = document.createElement("p")
-//     container.style.flexDirection = "row"
-//     container.style.gap = ".5em"
-
-//     loginRegisterContainer.appendChild(container)
-
-//     const button = document.createElement("span")
-//     button.style.color = "blue"
-//     button.style.cursor = "pointer"
-
-
-
-//     container.textContent = "Nie masz konta?"
-//     button.textContent = "Zarejestruj się"
-//     container.appendChild(button)
-
-//     button.addEventListener("click", () => {
-//         registerPage.classList.toggle("custom-hide")
-//         loginPage.classList.toggle("custom-hide")
-
-//         if (loginPage.classList.contains("custom-hide")) {
-//             container.textContent = "Masz konto?"
-//             button.textContent = "Zaloguj się"
-//             container.appendChild(button)
-//         } else {
-//             container.textContent = "Nie masz konta?"
-//             button.textContent = "Zarejestruj się"
-//             container.appendChild(button)
-//         }
-//     })
-
-
-// }
 // ------------------
 
 // sub-menu
