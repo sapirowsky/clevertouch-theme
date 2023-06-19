@@ -9,7 +9,7 @@
 </head>
 <body <?php body_class() ?> >
 <div class="content">
-<header>
+<header class="header">
     <div class="container flex justify-between">
         <a href="<?php echo home_url() ?>" class="">
             <?php if ( has_custom_logo() ): ?>
