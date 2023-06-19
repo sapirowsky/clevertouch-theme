@@ -37,6 +37,13 @@ body {
   justify-content: space-between;
   font-family: "Open Sans", sans-serif;
 }
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
 .content {
   width: 100%;
   min-height: 100vh;

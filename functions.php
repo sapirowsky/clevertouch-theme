@@ -136,11 +136,15 @@ function wc_refresh_cart_buttons($fragments){
 add_filter('woocommerce_get_availability_text', 'changeAvailabilityText',99,2);
 function changeAvailabilityText($availability, $product){
   $stock = $product->get_stock_quantity();
+
   if($product->is_in_stock() && $product->managing_stock()){
     if($stock < 5) return "<span style='color: red;'>Mało produktów w magazynie</span>";
     if($stock < 20) return "<span style='color: orange;'>Średnia ilość produktów w magazynie</span>";
     return "Na stanie";
+  }else if(!$product->is_in_stock() && $product->managing_stock() ){
+    return "<span style='color: red;'>Brak w magazynie</span>";
   }
+  return $availability;
 }
 // disable out of stock variation
 add_filter('woocommerce_variation_is_active', 'disableOutOfStockVariation', 10, 2);
